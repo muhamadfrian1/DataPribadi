@@ -1,33 +1,11 @@
-// Data keahlian. Ubah nama dan angka (0-100) di sini, tampilannya dibuat otomatis.
+// Data keahlian. Ubah atau tambah nama di sini, tampilannya dibuat otomatis.
 var skillGroups = [
-  {
-    title: "Web",
-    items: [
-      { name: "HTML", level: 85 },
-      { name: "CSS", level: 80 },
-      { name: "JavaScript", level: 70 },
-      { name: "PHP", level: 60 }
-    ]
-  },
-  {
-    title: "Basis data",
-    items: [
-      { name: "Query SQL", level: 75 },
-      { name: "Desain basis data (ERD)", level: 70 },
-      { name: "MySQL", level: 70 }
-    ]
-  },
-  {
-    title: "Statistika",
-    items: [
-      { name: "Statistika deskriptif", level: 75 },
-      { name: "Probabilitas", level: 65 },
-      { name: "Analisis data", level: 60 }
-    ]
-  }
+  { title: "Web", items: ["HTML", "CSS", "JavaScript", "PHP"] },
+  { title: "Basis data", items: ["Query SQL", "Desain basis data (ERD)", "MySQL"] },
+  { title: "Statistika", items: ["Statistika deskriptif", "Probabilitas", "Analisis data"] }
 ];
 
-// Tampilkan keahlian per kelompok beserta bar-nya
+// Tampilkan keahlian per kelompok
 (function renderSkills() {
   var box = document.getElementById("skills");
 
@@ -39,38 +17,16 @@ var skillGroups = [
     title.textContent = group.title;
     wrap.appendChild(title);
 
-    var list = document.createElement("div");
-    list.className = "skills";
-
-    group.items.forEach(function (s) {
-      var row = document.createElement("div");
-      row.className = "skill";
-
-      var name = document.createElement("span");
-      name.className = "skill-name";
-      name.textContent = s.name;
-
-      var bar = document.createElement("div");
-      bar.className = "bar";
-      var fill = document.createElement("span");
-      bar.appendChild(fill);
-
-      var pct = document.createElement("span");
-      pct.className = "pct";
-      pct.textContent = s.level + "%";
-
-      row.appendChild(name);
-      row.appendChild(bar);
-      row.appendChild(pct);
-      list.appendChild(row);
-
-      // Isi bar setelah elemen tampil supaya animasinya berjalan
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () { fill.style.width = s.level + "%"; });
-      });
+    var chips = document.createElement("div");
+    chips.className = "chips";
+    group.items.forEach(function (name) {
+      var chip = document.createElement("span");
+      chip.className = "chip";
+      chip.textContent = name;
+      chips.appendChild(chip);
     });
 
-    wrap.appendChild(list);
+    wrap.appendChild(chips);
     box.appendChild(wrap);
   });
 })();
