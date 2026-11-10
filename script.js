@@ -31,6 +31,36 @@ var skillGroups = [
   });
 })();
 
+// Tombol salin email
+(function copyEmail() {
+  var btn = document.getElementById("copy-btn");
+  var emailEl = document.getElementById("email");
+
+  function flash(label) {
+    btn.textContent = label;
+    setTimeout(function () { btn.textContent = "Salin"; }, 1500);
+  }
+
+  function selectText() {
+    var range = document.createRange();
+    range.selectNodeContents(emailEl);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    flash("Pilih lalu salin");
+  }
+
+  btn.addEventListener("click", function () {
+    try {
+      navigator.clipboard.writeText(emailEl.textContent).then(function () {
+        flash("Tersalin");
+      }, selectText);
+    } catch (e) {
+      selectText();
+    }
+  });
+})();
+
 // Tombol ganti tema terang/gelap, pilihan diingat di browser
 (function themeToggle() {
   var root = document.documentElement;
