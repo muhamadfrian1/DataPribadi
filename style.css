@@ -275,17 +275,19 @@ h2 + .chips, h3 + .chips { margin-top: 0; }
 
 .cert {
   display: grid;
-  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  gap: 16px;
   align-items: center;
 }
-.cert-img { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.cert-img { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
 .cert-img img { display: block; width: 100%; height: auto; }
 .cert-info { display: grid; gap: 8px; min-width: 0; }
 .cert-info h3 { margin: 0; font-family: var(--font-display); font-size: 18px; }
 .cert-info p { margin: 0; }
+.cert-info h3 { font-size: 16px; }
 @media (max-width: 620px) {
   .cert { grid-template-columns: minmax(0, 1fr); }
+  .cert-img { max-width: 240px; }
 }
 .chip {
   font-size: 13px;
